@@ -1,0 +1,24 @@
+FROM debian:jessie
+
+ENV TS_VERSION 6.2.0
+ENV LANG C.UTF-8
+
+RUN	set -ex									\
+	&& apt-get update							\
+	&& apt-get -y install tar gcc bzip2 libc6-dev linux-libc-dev make curl	\
+		libncursesw5-dev openssl libssl-dev zlib1g-dev libpcre3-dev	\
+		perl libxml2-dev libcap-dev tcl8.6-dev libhwloc-dev		\
+		libgeoip-dev libmysqlclient-dev libkyotocabinet-dev		\
+		libreadline-dev 						\
+	&& mkdir -p /usr/src							\
+	&& cd /usr/src								\
+	&& curl -L http://www-eu.apache.org/dist/trafficserver/trafficserver-${TS_VERSION}.tar.bz2 | bzip2 -dc | tar xf -
+
+RUN	cd /usr/src/trafficserver-${TS_VERSION}					\
+	&& ./configure --enable-wccp --enable-hardening --enable-luajit		\
+		--enable-tproxy --enable-experimental-plugins			\
+	&& make -j$(getconf _NPROCESSORS_ONLN)					\
+	&& make install								\
+	&& rm -rf /usr/src/
+
+CMD ["/usr/local/trafficserver/bin/traffic_top", "-o"]
