@@ -19,6 +19,7 @@ RUN	cd /usr/src/trafficserver-${REF}					\
 	&& env LDFLAGS='-Wl,-rpath,/usr/local/lib' ./configure			\
 		--enable-wccp --enable-hardening --enable-luajit		\
 		--enable-tproxy --enable-experimental-plugins			\
+		--localstatedir=/var						\
 	&& make -j$(getconf _NPROCESSORS_ONLN)					\
 	&& make install								\
 	&& rm -rf /usr/src/
