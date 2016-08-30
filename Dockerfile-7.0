@@ -16,10 +16,11 @@ RUN	set -ex									\
 
 RUN	cd /usr/src/trafficserver-${REF}					\
 	&& autoreconf -if							\
-	&& ./configure --enable-wccp --enable-hardening --enable-luajit		\
+	&& env LDFLAGS='-Wl,-rpath,/usr/local/lib' ./configure			\
+		--enable-wccp --enable-hardening --enable-luajit		\
 		--enable-tproxy --enable-experimental-plugins			\
 	&& make -j$(getconf _NPROCESSORS_ONLN)					\
 	&& make install								\
 	&& rm -rf /usr/src/
 
-CMD ["/usr/local/trafficserver/bin/traffic_cop", "-o"]
+CMD ["/usr/local/bin/traffic_cop", "-o"]

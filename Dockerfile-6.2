@@ -15,7 +15,8 @@ RUN	set -ex									\
 	&& curl -L http://www-eu.apache.org/dist/trafficserver/trafficserver-${TS_VERSION}.tar.bz2 | bzip2 -dc | tar xf -
 
 RUN	cd /usr/src/trafficserver-${TS_VERSION}					\
-	&& ./configure --enable-wccp --enable-hardening --enable-luajit		\
+	&& env LDFLAGS='-Wl,-rpath,/usr/local/lib'				\
+		./configure --enable-wccp --enable-hardening --enable-luajit	\
 		--enable-tproxy --enable-experimental-plugins			\
 	&& make -j$(getconf _NPROCESSORS_ONLN)					\
 	&& make install								\
