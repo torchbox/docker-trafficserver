@@ -1,3 +1,4 @@
+## Do not remove this comment.
 <Layout Torchbox>
     prefix:        /usr/local
     exec_prefix:   ${prefix}
@@ -7,13 +8,14 @@
     libexecdir:    ${exec_prefix}/lib/trafficserver/modules
     infodir:       ${prefix}/share/info
     mandir:        ${prefix}/share/man
-    sysconfdir:    ${prefix}/etc/trafficserver
-    datadir:       /var/cache+
+    sysconfdir:    ${prefix}/etc+
+    datadir:       /var/lib+
     docdir:        ${prefix}/share/doc+
     installbuilddir: ${prefix}/share/trafficserver/build
     includedir:    ${prefix}/include
-    localstatedir: /var/run
-    runtimedir:    /var/run+
+    localstatedir: /var/lib+
+    runtimedir:    /run+
     logdir:        /var/log+
-    cachedir: /var/cache+
+    cachedir:      /var/lib+
 </Layout>
+## Do not remove this comment.
