@@ -19,9 +19,12 @@ COPY config.layout /usr/src/trafficserver-${REF}
 RUN	cd /usr/src/trafficserver-${REF}					\
 	&& autoreconf -if							\
 	&& env LDFLAGS='-Wl,-rpath,/usr/local/lib' ./configure			\
+		--prefix=/usr/local						\
 		--enable-wccp --enable-hardening --enable-luajit		\
 		--enable-tproxy --enable-experimental-plugins			\
 		--enable-layout=Torchbox					\
+		--sysconfdir=/usr/local/etc/trafficserver			\
+		--localstatedir=/var/lib/trafficserver				\
 	&& make -j$(getconf _NPROCESSORS_ONLN)					\
 	&& make install								\
 	&& rm -rf /usr/src/

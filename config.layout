@@ -7,7 +7,7 @@
     libexecdir:    ${exec_prefix}/lib/trafficserver/modules
     infodir:       ${prefix}/share/info
     mandir:        ${prefix}/share/man
-    sysconfdir:    /etc+
+    sysconfdir:    ${prefix}/etc/trafficserver
     datadir:       /var/cache+
     docdir:        ${prefix}/share/doc+
     installbuilddir: ${prefix}/share/trafficserver/build
