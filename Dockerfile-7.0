@@ -1,6 +1,6 @@
 FROM debian:jessie
 
-ENV REF=8dc35e04a8a0b4fb6b1ea2bebcfaa915e7acdbf5
+ENV REF=6c1c6cf20e7d0e287d697a0f4181436013d17c30
 ENV LANG C.UTF-8
 
 RUN	set -ex									\
