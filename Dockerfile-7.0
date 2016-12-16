@@ -1,6 +1,12 @@
 FROM debian:jessie
 
-ENV REF=6c1c6cf20e7d0e287d697a0f4181436013d17c30
+#ENV REPO=apache/trafficserver
+#ENV REF=6c1c6cf20e7d0e287d697a0f4181436013d17c30
+
+# for testing cache-key-genid fix
+ENV REPO=torchbox/trafficserver
+ENV REF=889f5b4c27fe8d9cb1c6d4663826730e441bd58a
+
 ENV LANG C.UTF-8
 
 RUN	set -ex									\
@@ -12,13 +18,9 @@ RUN	set -ex									\
 		libreadline-dev autoconf automake				\
 	&& mkdir -p /usr/src							\
 	&& cd /usr/src								\
-	&& curl -L https://github.com/apache/trafficserver/archive/${REF}.tar.gz | gzip -dc | tar xf -
+	&& curl -L https://github.com/${REPO}/archive/${REF}.tar.gz | gzip -dc | tar xf -
 
 COPY config.layout /usr/src/trafficserver-${REF}
-
-#		--prefix=/usr/local						\
-#		--sysconfdir=/usr/local/etc/trafficserver			\
-#		--localstatedir=/var/lib/trafficserver				\
 
 RUN	set -ex									\
 	&& cd /usr/src/trafficserver-${REF}					\
