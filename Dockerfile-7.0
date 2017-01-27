@@ -1,11 +1,7 @@
 FROM debian:jessie
 
-#ENV REPO=apache/trafficserver
-#ENV REF=6c1c6cf20e7d0e287d697a0f4181436013d17c30
-
-# for testing cache-key-genid fix
-ENV REPO=torchbox/trafficserver
-ENV REF=889f5b4c27fe8d9cb1c6d4663826730e441bd58a
+ENV REPO=apache/trafficserver
+ENV REF=444c490a2b6dff29966034d0f94618f9582db813
 
 ENV LANG C.UTF-8
 
