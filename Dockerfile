@@ -1,7 +1,7 @@
 # Use Debian, because TS doesn't seem to work very will with Alpine.
 FROM debian:jessie
 
-ARG ts_version=7.0.0
+ARG ts_version
 ENV LANG C.UTF-8
 
 COPY config.layout /usr/src
@@ -18,7 +18,9 @@ RUN	set -ex									\
 	&& curl -L http://www-eu.apache.org/dist/trafficserver/trafficserver-${ts_version}.tar.bz2 | bzip2 -dc | tar xf - \
 	&& cd trafficserver-${ts_version}					\
 	&& cp /usr/src/config.layout .						\
-	&& env LDFLAGS='-Wl,-rpath,/usr/local/lib' ./configure			\
+	&& env LDFLAGS='-Wl,-rpath,/usr/local/lib'				\
+		./configure							\
+		--with-user=nobody --with-group=nogroup				\
 		--enable-wccp --enable-hardening --enable-luajit		\
 		--enable-tproxy --enable-experimental-plugins			\
 		--enable-layout=Torchbox					\

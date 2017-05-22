@@ -1,11 +1,16 @@
+TS_VERSION?=	7.0.0
+RELEASE?=	1.0
+FULL_VERSION?=	${TS_VERSION}-${RELEASE}
+
 REPOSITORY?=	torchbox/trafficserver
+IMAGE?=		${REPOSITORY}:${FULL_VERSION}
 
 default: build
 
 build:
-	docker build -f Dockerfile-7.0 -t ${REPOSITORY}:7.0 .
+	docker build -t ${IMAGE} --pull --build-arg=ts_version=${TS_VERSION} .
 
 push:
-	docker push ${REPOSITORY}:7.0
+	docker push ${IMAGE}
 
 .PHONY: build push
