@@ -1,0 +1,4 @@
+# This is just a dummy file, nothing is built for the master branch.
+language: c
+script:
+- 'true'
