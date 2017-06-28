@@ -1,4 +1,4 @@
-TS_VERSION?=	7.0.0
+TS_VERSION?=	7.1.x
 RELEASE?=	1.0
 FULL_VERSION?=	${TS_VERSION}-${RELEASE}
 
@@ -8,7 +8,7 @@ IMAGE?=		${REPOSITORY}:${FULL_VERSION}
 default: build
 
 build:
-	docker build -t ${IMAGE} --pull --build-arg=ts_version=${TS_VERSION} .
+	docker build -t ${IMAGE} --pull .
 
 push:
 	docker push ${IMAGE}
