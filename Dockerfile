@@ -8,7 +8,7 @@ RUN	set -ex									\
 	&& apt-get update							\
 	&& apt-get -y install tar gcc bzip2 libc6-dev linux-libc-dev make curl	\
 		libncursesw5-dev openssl libssl-dev zlib1g-dev libpcre3-dev	\
-		perl libxml2-dev libcap-dev tcl8.6-dev libhwloc-dev		\
+		perl libxml2-dev libcap-dev tcl8.6-dev libhwloc-dev libcap2	\
 		libgeoip-dev libmariadbclient-dev-compat libkyotocabinet-dev	\
 		libreadline-dev ca-certificates libtcl8.6 libgeoip1		\
 		libkyotocabinet16v5 libmariadbclient18 autoconf			\
