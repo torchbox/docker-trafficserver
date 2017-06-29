@@ -7,7 +7,7 @@ COPY config.layout /usr/src
 RUN	set -ex									\
 	&& apt-get update							\
 	&& apt-get -y install tar gcc bzip2 libc6-dev linux-libc-dev make curl	\
-		libncursesw5-dev openssl libssl-dev zlib1g-dev libpcre3-dev	\
+		libncursesw5-dev openssl libssl1.0-dev zlib1g-dev libpcre3-dev	\
 		perl libxml2-dev libcap-dev tcl8.6-dev libhwloc-dev libcap2	\
 		libgeoip-dev libmariadbclient-dev-compat libkyotocabinet-dev	\
 		libreadline-dev ca-certificates libtcl8.6 libgeoip1		\
@@ -27,8 +27,8 @@ RUN	set -ex									\
 	&& make -j$(getconf _NPROCESSORS_ONLN)					\
 	&& make install								\
 	&& apt-get -y purge gcc libc6-dev linux-libc-dev make curl		\
-		libncursesw5-dev libssl-dev zlib1g-dev libpcre3-dev libxml2-dev	\
-		libcap-dev tcl8.6-dev libhwloc-dev libgeoip-dev			\
+		libncursesw5-dev libssl1.0-dev zlib1g-dev libpcre3-dev		\
+		libxml2-dev libcap-dev tcl8.6-dev libhwloc-dev libgeoip-dev	\
 		libmariadbclient-dev-compat libkyotocabinet-dev libreadline-dev	\
 		libmariadbclient-dev						\
 	&& apt-get -y autoremove						\
