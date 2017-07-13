@@ -19,8 +19,8 @@ RUN	set -ex									\
 		libkyotocabinet16v5 libmariadbclient18 autoconf	libpcre3-dev	\
 	&& mkdir -p /usr/src							\
 	&& cd /usr/src								\
-	&& curl -L https://github.com/apache/trafficserver/archive/7.1.x.tar.gz | gzip -dc | tar xf - \
-	&& cd trafficserver-7.1.x						\
+	&& curl -L http://people.apache.org/~zwoop/rel-candidates/trafficserver-7.1.0-rc0.tar.bz2 | bzip2 -dc | tar xf - \
+	&& cd trafficserver-7.1.0						\
 	&& cp /usr/src/config.layout .						\
 	&& autoreconf -if							\
 	&& env	LDFLAGS='-Wl,-rpath,/usr/local/lib'				\
